@@ -1,8 +1,8 @@
 # Makefile for building a Java application
 
 # Define the main class and source directory
-MAIN_CLASS = main.Main
-SRC_DIR = ./src
+MAIN_CLASS = core.Main
+SRC_DIR = ./jlox-core/src
 
 # Define the build and output directories
 BUILD_DIR = ./build
