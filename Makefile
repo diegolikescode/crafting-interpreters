@@ -1,7 +1,7 @@
 # Makefile for building a Java application
 
 # Define the main class and source directory
-MAIN_CLASS = original.Main
+MAIN_CLASS = main.Main
 SRC_DIR = ./src
 
 # Define the build and output directories

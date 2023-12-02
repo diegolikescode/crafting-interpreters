@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/jlox-core/jlox-core.iml" filepath="$PROJECT_DIR$/jlox-core/jlox-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/jlox-interpreter.iml" filepath="$PROJECT_DIR$/.idea/jlox-interpreter.iml" />
-      <module fileurl="file://$PROJECT_DIR$/original/original.iml" filepath="$PROJECT_DIR$/original/original.iml" />
+      <module fileurl="file://$PROJECT_DIR$/main/main.iml" filepath="$PROJECT_DIR$/main/main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/original/original.iml" filepath="$PROJECT_DIR$/src/original/original.iml" />
     </modules>
   </component>
 </project>
