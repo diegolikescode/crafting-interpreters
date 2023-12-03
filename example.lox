@@ -1,0 +1,6 @@
+var a = "another string";
+var b = 69.420;
+
+fun anSimpleFunction() {
+    var c = 59;
+}
