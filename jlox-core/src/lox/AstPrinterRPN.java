@@ -28,11 +28,8 @@ public class AstPrinterRPN implements Expr.Visitor<String>{
     }
 
     private String parenthesize(String name, Expr... exprs) {
-        System.out.println("THATS MY NAME  "+name);
         StringBuilder builder = new StringBuilder();
         for(Expr expr : exprs) {
-            System.out.print("A SINGLE EXPRESSION: ");
-            System.out.println(new AstPrinter().print(expr));
             builder.append(expr.accept(this));
             builder.append(" ");
         }
