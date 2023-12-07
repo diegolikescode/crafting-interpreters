@@ -1,12 +1,11 @@
-package core;
+package lox;
 
-import javax.crypto.spec.PSource;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static core.TokenType.*;
+import static lox.TokenType.*;
 
 public class Scanner {
     private final String source;
