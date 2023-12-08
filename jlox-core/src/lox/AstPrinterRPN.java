@@ -52,18 +52,6 @@ public class AstPrinterRPN implements Expr.Visitor<String>{
                 )
         );
 
-        Expr expressionOld = new Expr.Binary(
-                new Expr.Unary(
-                        new Token(TokenType.MINUS, "-", null, 1),
-                        new Expr.Literal(123)
-                ),
-                new Token(TokenType.STAR, "*", null, 1),
-                new Expr.Literal(4200.69)
-        );
         System.out.println(new AstPrinterRPN().print(expression));
-        // unary expression (Token.MINUS and a literal token 123)
-        // a star token (*) that for some reason is at the beginning
-        // a literal at the end: 4200.69
-        // (* (- 123) 4200.69) => ((123) - 4200.69)*)
     }
 }
