@@ -7,11 +7,21 @@ import java.util.List;
 import static lox.TokenType.*;
 
 public class Parser {
+    private static class ParserError extends RuntimeException {}
+
     private final List<Token> tokens;
     private int current = 0;
 
     Parser(List<Token> tokens) {
         this.tokens = tokens;
+    }
+
+    public Expr parse() {
+        try {
+            return expression();
+        } catch (ParserError error) {
+            return null;
+        }
     }
 
     private Expr expression() {
@@ -121,6 +131,39 @@ public class Parser {
             Expr expr = expression();
             consume(RIGHT_BRACE, "Expect ')' after expression");
             return new Expr.Grouping(expr);
+        }
+
+        throw error(peek(), "Expect expression.");
+    }
+
+    private Token consume(TokenType type, String message) {
+        if(check(type)) return advance();
+        throw error(peek(), message);
+    }
+
+    private ParserError error(Token token, String message) {
+        Lox.error(token, message);
+        return new ParserError();
+    }
+
+    private void synchronize() {
+        advance();
+
+        while (!isAtEnd()) {
+            if(previous().type == SEMICOLON) return;
+
+            switch (peek().type) {
+                case CLASS:
+                case FUN:
+                case VAR:
+                case FOR:
+                case IF:
+                case WHILE:
+                case PRINT:
+                case RETURN:
+                    return;
+            }
+            advance();
         }
     }
 }
