@@ -1,7 +1,5 @@
 package lox;
 
-import javax.naming.ldap.ExtendedRequest;
-import java.beans.Expression;
 import java.util.List;
 
 import static lox.TokenType.*;
