@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,6 +27,11 @@ public class GenerateAst {
                 "Unary    : Token operator, Expr right"
         ));
 
+        defineAst(outputDir, "Stmt", Arrays.asList(
+                "Expression : Expr expression",
+                "Print      : Expr expression"
+        ));
+
     }
 
     private static void defineAst(String outputDir, String baseName, List<String> types)
@@ -33,7 +39,7 @@ public class GenerateAst {
         String path = outputDir + "/" + baseName + ".java";
         PrintWriter writer = new PrintWriter(path, "UTF-8");
 
-        writer.println("package core;");
+        writer.println("package lox;");
         writer.println();
         writer.println("import java.util.List;");
         writer.println();
