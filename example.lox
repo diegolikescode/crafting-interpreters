@@ -1,3 +1,4 @@
-"xqdlzada" == "xqdl";
-var bresque = "xama";
-var sla = 6969
+print "xqdlzada" == "xqdl";
+print "xqdlzada" == "xqdlzada";
+print "one and two and tree and more!";
+print "dereguedele " + 69;
