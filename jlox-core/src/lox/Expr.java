@@ -7,9 +7,6 @@ abstract class Expr {
         R visitLiteralExpr(Literal expr);
         R visitUnaryExpr(Unary expr);
     }
-
-    abstract <R> R accept(Visitor<R> visitor);
-
     static class Binary extends Expr {
         final Expr left;
         final Token operator;
@@ -63,4 +60,7 @@ abstract class Expr {
             return visitor.visitUnaryExpr(this);
         }
     }
+
+
+    abstract <R> R accept(Visitor<R> visitor);
 }
