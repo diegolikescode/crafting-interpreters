@@ -6,7 +6,9 @@ import java.util.List;
 import static lox.TokenType.*;
 
 public class Parser {
-    private static class ParserError extends RuntimeException {}
+
+    private static class ParserError extends RuntimeException {
+    }
 
     private final List<Token> tokens;
     private int current = 0;
@@ -47,7 +49,9 @@ public class Parser {
 
     private Stmt declaration() {
         try {
-            if (match(VAR)) return varDeclaration();
+            if (match(VAR)) {
+                return varDeclaration();
+            }
 
             return statement();
         } catch (ParserError error) {
@@ -91,6 +95,7 @@ public class Parser {
 
     private boolean check(TokenType type) {
         if (isAtEnd()) return false;
+        TokenType b = tokens.get(current).type;
         return peek().type == type;
     }
 
@@ -138,7 +143,7 @@ public class Parser {
     private Expr factor() {
         Expr expr = unary();
 
-        while(match(SLASH, STAR)) {
+        while (match(SLASH, STAR)) {
             Token operator = previous();
             Expr right = unary();
             expr = new Expr.Binary(expr, operator, right);
@@ -158,9 +163,9 @@ public class Parser {
     }
 
     private Expr primary() {
-        if(match(FALSE)) return new Expr.Literal(false);
-        if(match(TRUE)) return new Expr.Literal(true);
-        if(match(NIL)) return new Expr.Literal(null);
+        if (match(FALSE)) return new Expr.Literal(false);
+        if (match(TRUE)) return new Expr.Literal(true);
+        if (match(NIL)) return new Expr.Literal(null);
 
         if (match(NUMBER, STRING)) {
             return new Expr.Literal(previous().literal);
@@ -180,7 +185,7 @@ public class Parser {
     }
 
     private Token consume(TokenType type, String message) {
-        if(check(type)) return advance();
+        if (check(type)) return advance();
         throw error(peek(), message);
     }
 
@@ -193,7 +198,7 @@ public class Parser {
         advance();
 
         while (!isAtEnd()) {
-            if(previous().type == SEMICOLON) return;
+            if (previous().type == SEMICOLON) return;
 
             switch (peek().type) {
                 case CLASS:

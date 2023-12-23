@@ -1,4 +1,4 @@
-print "xqdlzada" == "xqdl";
-print "xqdlzada" == "xqdlzada";
-print "one and two and tree and more!";
-print "dereguedele " + 69;
+var xqdl = 69;
+var another = 69;
+
+print xqdl + another;
