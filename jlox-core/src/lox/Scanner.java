@@ -40,6 +40,7 @@ public class Scanner {
         this.source = source;
     }
 
+    // this is basically a "tokenizer"
     List<Token> scanTokens() {
         while (!isAtEnd()) {
             // here is the beginning of the next lexeme
