@@ -17,11 +17,13 @@ public class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
 
             @Override
             public Object call(Interpreter interpreter, List<Object> arguments) {
-                return (double)System.currentTimeMillis() / 1000.0;
+                return (double) System.currentTimeMillis() / 1000.0;
             }
 
             @Override
-            public String toString() { return "<native fn>"; }
+            public String toString() {
+                return "<native fn>";
+            }
         });
     }
 
@@ -50,7 +52,7 @@ public class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
         try {
             this.environment = environment;
 
-            for (Stmt statement: statements) {
+            for (Stmt statement : statements) {
                 execute(statement);
             }
         } finally {
@@ -82,10 +84,17 @@ public class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
     }
 
     @Override
+    public Void visitFunctionStmt(Stmt.Function stmt) {
+        LoxFunction function = new LoxFunction(stmt, environment);
+        environment.define(stmt.name.lexeme, function);
+        return null;
+    }
+
+    @Override
     public Void visitIfStmt(Stmt.If stmt) {
-        if(isTruthy(evaluate(stmt.condition))) {
+        if (isTruthy(evaluate(stmt.condition))) {
             execute(stmt.thenBranch);
-        } else if(stmt.elseBranch != null) {
+        } else if (stmt.elseBranch != null) {
             execute(stmt.elseBranch);
         }
         return null;
@@ -96,6 +105,13 @@ public class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
         Object value = evaluate(stmt.expression);
         System.out.println(stringfy(value));
         return null;
+    }
+
+    @Override
+    public Void visitReturnStmt(Stmt.Return stmt) {
+        Object value = null;
+        if (stmt.value != null) value = evaluate(stmt.value);
+        throw new Return(value);
     }
 
     @Override
@@ -139,10 +155,10 @@ public class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
     public Object visitLogicalExpr(Expr.Logical expr) {
         Object left = evaluate(expr.left);
 
-        if(expr.operator.type == TokenType.OR) {
-            if(isTruthy(left)) return left;
+        if (expr.operator.type == TokenType.OR) {
+            if (isTruthy(left)) return left;
         } else {
-            if(!isTruthy(left)) return left;
+            if (!isTruthy(left)) return left;
         }
         return evaluate(expr.right);
     }
@@ -227,15 +243,15 @@ public class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
             arguments.add(evaluate(argument));
         }
 
-        if(!(callee instanceof LoxCallable)) {
+        if (!(callee instanceof LoxCallable)) {
             throw new RuntimeError(expr.paren,
                     "Can only call functions and classes.");
         }
 
-        LoxCallable function = (LoxCallable)callee;
+        LoxCallable function = (LoxCallable) callee;
         if (arguments.size() != function.arity()) {
             throw new RuntimeError(expr.paren, "Expect" +
-                    function.arity() + "arguments but got " + arguments.size()+".");
+                    function.arity() + "arguments but got " + arguments.size() + ".");
         }
 
         return function.call(this, arguments);
