@@ -1,8 +1,5 @@
+class Bagel {}
 
-class DevonshireCream {
-    serveOn() {
-        return "Scones";
-    }
-}
-
-print DevonshireCream;
+var bagel = Bagel();
+bagel.xama = "haha";
+print bagel.xama;
