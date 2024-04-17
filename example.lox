@@ -1,11 +1,10 @@
-class Bagel {}
-
-var bagel = Bagel();
-bagel.xama = "haha";
-
-fun nois(xesque) {
-    print xesque;
-    print xesque + " dele";
+class Cake {
+    taste() {
+        var adjective = "delicious";
+        print i+ " The " + this.flavor + " is pretty " + adjective + "!";
+    }
 }
 
-nois(bagel.xama);
+var cake = Cake();
+cake.flavor = "German chocolate";
+cake.taste();
