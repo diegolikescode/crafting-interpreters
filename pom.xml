@@ -108,6 +108,18 @@
                 </arguments>
               </configuration>
             </execution>
+            <execution>
+              <id>tool</id>
+              <goals>
+                <goal>java</goal>
+              </goals>
+              <configuration>
+                <mainClass>lox.tool.GenerateAst</mainClass>
+                <arguments>
+                  <arguments>src/main/java/lox</arguments>
+                </arguments>
+              </configuration>
+            </execution>
           </executions>
         </plugin>
       </plugins>

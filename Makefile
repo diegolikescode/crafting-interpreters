@@ -6,3 +6,7 @@ arg:
 	mvn install
 	mvn exec:java@with-args
 
+tool:
+	mvn install
+	mvn exec:java@tool
+

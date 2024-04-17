@@ -1,16 +1,12 @@
-package tool;
+package lox.tool;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * SIMPLE JAVA SCRIPT (HAHA) TO GENERATE SOME BOILER PLATE
- */
 
 public class GenerateAst {
     public static void main(String[] args) throws IOException {
@@ -29,6 +25,7 @@ public class GenerateAst {
                 "Literal  : Object value",
                 "Logical  : Expr left, Token operator, Expr right",
                 "Set      : Expr object, Token name, Expr value",
+                "This     : Token keyword",
                 "Unary    : Token operator, Expr right",
                 "Variable : Token name"
         ));
